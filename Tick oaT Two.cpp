@@ -27,6 +27,9 @@ const char displayLookup[4][2] = {      // The char to be displayed and it's col
     {'T', 5}
 };
 
+const char horizontalGridLine[13] = {10, -60, -60, -60, -59, -60, -60, -60, -59, -60, -60, -60, 0};
+const char verticalGridLine[4]    = {32, -77, 32, 0};
+
 char board[3][3] = {0};          // 0 - empty space, 1 - horizontal, 2 - vertical, 3 - fully occupied
 char currentTurn  = 1;           // 1 is player red/horizontal, 2 is player blue/vertical
 int  currentTurns = 0;           // Turns elapsed
@@ -48,7 +51,6 @@ int main (void) {
         prevRow = -1, prevCol = -1;
     char in_;
 
-    // printCharWithColor('a', 3);
     drawBoard();
 
     // Game loop
@@ -157,9 +159,9 @@ void drawBoard(void) {
 
             printCharWithColor( displayLookup[ board[i][j] ][0], displayLookup[ board[i][j] ][1] );
 
-            if (j < 2) std::printf(" | ");
+            if (j < 2) std::printf(verticalGridLine);
         }
-        if (i < 2) std::printf("\n---+---+---");
+        if (i < 2) std::printf(horizontalGridLine);
         std::putchar('\n');
     }
     std::putchar('\n');
